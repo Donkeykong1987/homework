@@ -8,11 +8,14 @@ c = conn.cursor()
 
 query = '''
 SELECT AVG(cena)
-FROM Produkty
-WHERE id_kategorii = 2
+FROM Produkty p
+JOIN Kategorie k ON p.id_kategorii = k.id_kategorii
+WHERE k.nazwa_kategorii = ?
 '''
 
-c.execute(query)
+c.execute(query, ("Książki",)
 wynik = c.fetchone()
+
+conn.close()
 
 print(f"Srednia wartość produktów z kategorii Książki to: {wynik[0]}")
