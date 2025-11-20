@@ -18,4 +18,6 @@ WHERE k.id_kategorii = 1;
 c.execute(query)
 wynik = c.fetchone()
 
+conn.close()
+
 print(wynik[0])
