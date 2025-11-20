@@ -13,10 +13,12 @@ FROM Produkty p
 JOIN Zamowienia_Produkty z ON p.id_produktu = z.id_produktu
 JOIN Zamowienia k ON z.id_zamowienia = k.id_zamowienia
 JOIN Klienci l ON k.id_klienta = l.id_klienta
-WHERE l.id_klienta = 1
+WHERE l.imie = ?
 '''
 
-c.execute(query)
+c.execute(query, ("Anna Nowak",))
 wynik = c.fetchall()
+
+conn.close()
 
 print(wynik)
