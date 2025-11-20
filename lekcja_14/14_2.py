@@ -14,4 +14,6 @@ FROM Produkty
 c.execute(query)
 wynik = c.fetchone()
 
+conn.close()
+
 print(wynik)
