@@ -53,17 +53,19 @@ def student_avg(register):
     check_student = input("Dla jakiego ucznia chcesz policzyć średnią: ")
 
     if check_student in register:
-        all_grades = []
+        subject_avgs = []
         for subject, grades in register[check_student].items():
             if len(grades) == 0:
                 print(f"Brak ocen z przedmiotu: {subject}")
             else:
-                all_grades.extend(grades)
+                subject_avg = sum(grades) / len(grades)
+                subject_avgs.append(subject_avg)
 
-        if len(all_grades) == 0:
+        if len(subject_avgs) == 0:
             return "Uczeń nie ma żadnych ocen."
+        
         else:
-            avg_student = sum(all_grades) / len(all_grades)
-            return f"Średnia ucznia {check_student}: {avg_student:.2f}"
+            final_avg = sum(subject_avgs) / len(subject_avgs)
+            return f"Średnia ucznia {check_student}: {final_avg:.2f}"
     else:
         return "Nie znaleziono ucznia w dzienniku."
