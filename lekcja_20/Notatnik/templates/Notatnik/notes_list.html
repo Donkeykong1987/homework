@@ -1,0 +1,17 @@
+<h1>Wszystkie notatki</h1>
+
+<ul>
+{% for n in page_obj %}
+    <li>{{ n.tytul }} ({{ n.data_dodania }})</li>
+{% endfor %}
+</ul>
+
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">poprzednia</a>
+    {% endif %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">następna</a>
+    {% endif %}
+</div>
