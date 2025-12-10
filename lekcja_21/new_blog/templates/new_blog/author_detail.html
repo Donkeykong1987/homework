@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Wpisy autora: {{ author.name }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; }
+        article { border: 1px solid #ddd; margin-bottom: 20px; padding: 15px; border-radius: 6px; }
+        .entry-meta, .entry-content { margin-bottom: 10px; }
+        .author { font-style: italic; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Wpisy autora: {{ author.name }}</h1>
+    </header>
+
+    <main>
+        {% if entries %}
+            {% for entry in entries %}
+                <article>
+                    <h2>{{ entry.headline }}</h2>
+
+                    <div class="entry-meta">
+                        <p>📅 {{ entry.pub_date|date:"d.m.Y" }}</p>
+                        <p>Blog: {{ entry.blog.name }}</p>
+
+                        <p><strong>Ocena:</strong>
+                            {% with ""|center:5 as stars %}
+                                {% for i in stars %}
+                                    {% if forloop.counter <= entry.rating %}
+                                        ⭐
+                                    {% else %}
+                                        ☆
+                                    {% endif %}
+                                {% endfor %}
+                            {% endwith %}
+                            ({{ entry.rating }}/5)
+                        </p>
+
+                        <p>💬 Komentarzy: {{ entry.number_of_comments }} | 
+                           🔗 Pingbacków: {{ entry.number_of_pingbacks }}</p>
+                    </div>
+
+                    <div class="entry-content">
+                        {{ entry.body_text|truncatewords:30 }}
+                    </div>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>Ten autor nie ma jeszcze żadnych wpisów.</p>
+        {% endif %}
+    </main>
+
+</body>
+</html>
