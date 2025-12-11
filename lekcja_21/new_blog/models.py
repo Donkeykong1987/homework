@@ -27,4 +27,4 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.headline
-# Create your models here.
+
