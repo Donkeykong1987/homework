@@ -13,12 +13,10 @@ def user_profile(request, username):
 
 def category_products(request, category_id):
     
-    category = get_object_or_404(Category, id=category_id)
-    
-    products = Product.objects.filter(category=category)
+    products = Product.objects.filter(category_id=category_id)
     
     return render(request, "category_products.html", {
-        "category": category,
+        "category_id": category_id,
         "products": products
     })
 
