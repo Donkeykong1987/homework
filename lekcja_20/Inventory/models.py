@@ -46,7 +46,7 @@ class Order(models.Model):
     is_express = models.BooleanField(default=False)
 
     class Status(models.TextChoices):
-        PENDIGN = "pending", "Pending"
+        PENDING = "pending", "Pending"
         PROCESSING = "processing", "Processing"
         SHIPPED = "shipped", "Shipped"
         CANCELLED = "cancelled", "Cancelled"
@@ -54,7 +54,7 @@ class Order(models.Model):
     status = models.CharField(
         max_length=15,
         choices = Status.choices,
-        default = Status.PENDIGN
+        default = Status.PENDING
     )
     def __str__(self):
         return f"{self.order_number}"
