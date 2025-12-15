@@ -19,7 +19,7 @@ class ProductAdmin(admin.ModelAdmin):
         "category")
     search_fields = ("name", )
     list_filter = ("created_at", "is_available",)
-# Register your models here.
+
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
