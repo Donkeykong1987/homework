@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista wpisów</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 900px; margin: auto; }
+        h1 { margin-bottom: 20px; }
+        article { border: 1px solid #ddd; margin-bottom: 15px; padding: 15px; border-radius: 6px; }
+        .meta { color: #555; font-size: 0.9em; margin-bottom: 10px; }
+        .authors { font-style: italic; }
+    </style>
+</head>
+<body>
+
+<h1>Wpisy z oceną > 7</h1>
+
+{% if entries %}
+    {% for entry in entries %}
+        <article>
+            <h2>{{ entry.headline }}</h2>
+            
+            <div class="meta">
+                <p>📅 Data publikacji: {{ entry.pub_date|date:"d.m.Y" }}</p>
+                <p>✍ Autorzy: 
+                    {% for author in entry.authors.all %}
+                        {{ author.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p>🏷 Blog: {{ entry.blog.name }}</p>
+                <p>⭐ Ocena: {{ entry.rating }}/10</p>
+            </div>
+
+            <div class="content">
+                {{ entry.body_text|linebreaks }}
+            </div>
+        </article>
+    {% endfor %}
+{% else %}
+    <p>Brak wpisów z oceną powyżej 7.</p>
+{% endif %}
+
+</body>
+</html>

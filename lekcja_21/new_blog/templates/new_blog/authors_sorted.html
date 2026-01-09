@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Autorzy według liczby wpisów</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: auto; }
+        h1 { margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+<h1>Autorzy według liczby wpisów</h1>
+
+{% if authors %}
+    <table>
+        <tr>
+            <th>Lp.</th>
+            <th>Autor</th>
+            <th>Email</th>
+            <th>Liczba wpisów</th>
+        </tr>
+        {% for author in authors %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ author.name }}</td>
+            <td>{{ author.email }}</td>
+            <td>{{ author.num_entries }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Brak autorów w bazie danych.</p>
+{% endif %}
+
+</body>
+</html>

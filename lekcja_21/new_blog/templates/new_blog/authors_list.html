@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <title>Lista autorów</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 8px 0; border-bottom: 1px solid #eee; }
+    .email { color: #555; margin-left: 8px; }
+  </style>
+</head>
+<body>
+
+  <h1>Autorzy</h1>
+
+  {% if authors %}
+    <ul>
+      {% for author in authors %}
+        <li>
+          {{ author.name }} <span class="email">&lt;{{ author.email }}&gt;</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Brak autorów w bazie danych.</p>
+  {% endif %}
+
+</body>
+</html>
